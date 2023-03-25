@@ -9,7 +9,9 @@
 
     {% for tag in tags %}
     <h3>
-        {{ tag.title }}
+        <a href="{{ tag.get_absolute_url }}">
+            {{ tag.title }}
+        </a>
     </h3>
     {% endfor %}
 {% endblock %}
