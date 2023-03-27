@@ -17,7 +17,7 @@ try: # Click on tag_link
     time.sleep(1)
     tag_link.click()
 except NoSuchElementException as error:
-    print("Click on tag_link test failed\n", error)
+    print("Click on Tags page tag_link test failed\n", error)
 
 try: # Click on Read button
     read_button = browser.find_element(By.CSS_SELECTOR, "a.btn")
