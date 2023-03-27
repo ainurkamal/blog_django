@@ -4,27 +4,20 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 
 
-try: # Tags page title name
-    url = "http://127.0.0.1:5000/blog/tags/"
+try: # Posts page title name
+    url = "http://127.0.0.1:5000/blog/"
     browser = webdriver.Chrome()
     browser.get(url)
-    assert 'Tags list' in browser.title
+    assert 'Posts list' in browser.title
 except AssertionError as error:
-    print("Tags page title name test failed\n", error)
-
-try: # Click on tag_link
-    tag_link = browser.find_element(By.LINK_TEXT, "django")
-    time.sleep(1)
-    tag_link.click()
-except NoSuchElementException as error:
-    print("Click on Tags page tag_link test failed\n", error)
+    print("Posts page name title test failed\n", error)
 
 try: # Click on Read some post
     read_button = browser.find_element(By.CSS_SELECTOR, "a.btn")
     time.sleep(1)
     read_button.click()
 except NoSuchElementException as error:
-    print("Read_button after click on tag_ling test failed\n", error)
+    print("Click on Posts page Read button test failed\n", error)
 
 try: # Return to Posts page
     nav_posts_button = browser.find_element(By.CSS_SELECTOR, "a.nav-posts")
