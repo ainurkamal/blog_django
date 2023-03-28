@@ -1,6 +1,7 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views.generic import View
+from django.shortcuts import redirect
 
 from .models import Post, Tag
 from .utils import ObjectDetailMixin
@@ -34,3 +35,10 @@ class TagCreate(View):
     def get(self: 'TagCreate', request: HttpRequest) -> HttpResponse:
         form = TagForm()
         return render(request, 'blog/tag_create.html', context={'form': form})
+    
+    def post(self: 'TagCreate', request: HttpRequest) -> HttpResponse:
+        bound_form = TagForm(request.POST)
+        if bound_form.is_valid():
+            new_tag = bound_form.save()
+            return redirect(new_tag)
+        return render(request, 'blog/tag_create.html', context={'form': bound_form})
