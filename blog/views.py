@@ -1,5 +1,6 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.views.generic import View
 from .models import Post, Tag
 from typing import List
@@ -12,7 +13,7 @@ def posts_list(request: HttpRequest) -> HttpResponse:
 
 class PostDetail(View):
     def get(self, request: HttpRequest, slug: str) -> HttpResponse:
-        post: Post = Post.objects.get(slug__iexact=slug)
+        post: Post = get_object_or_404(Post, slug__iexact=slug)
         return render(request, 'blog/post_detail.html', context={'post': post})
 
 
@@ -23,6 +24,6 @@ def tags_list(request: HttpRequest) -> HttpResponse:
 
 class TagDetail(View):
     def get(self, request: HttpRequest, slug: str) -> HttpResponse:
-        tag: Tag = Tag.objects.get(slug__iexact=slug)
+        tag: Tag = get_object_or_404(Tag, slug__iexact=slug)
         return render(request, 'blog/tag_detail.html', context={'tag': tag})
 
