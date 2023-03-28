@@ -34,4 +34,3 @@ class TagCreate(View):
     def get(self: 'TagCreate', request: HttpRequest) -> HttpResponse:
         form = TagForm()
         return render(request, 'blog/tag_create.html', context={'form': form})
-
