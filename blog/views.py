@@ -4,6 +4,8 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import View
 from .models import Post, Tag
 from typing import List
+from .utils import ObjectDetailMixin
+from typing import Type, Any
 
 
 def posts_list(request: HttpRequest) -> HttpResponse:
@@ -11,10 +13,9 @@ def posts_list(request: HttpRequest) -> HttpResponse:
     return render(request, 'blog/index.html', context={'posts': posts})
 
 
-class PostDetail(View):
-    def get(self, request: HttpRequest, slug: str) -> HttpResponse:
-        post: Post = get_object_or_404(Post, slug__iexact=slug)
-        return render(request, 'blog/post_detail.html', context={'post': post})
+class PostDetail(ObjectDetailMixin, View):
+    model: Type[Any] = Post
+    template: str = 'blog/post_detail.html'
 
 
 def tags_list(request: HttpRequest) -> HttpResponse:
@@ -22,8 +23,7 @@ def tags_list(request: HttpRequest) -> HttpResponse:
     return render(request, 'blog/tags_list.html', context={'tags': tags})
 
 
-class TagDetail(View):
-    def get(self, request: HttpRequest, slug: str) -> HttpResponse:
-        tag: Tag = get_object_or_404(Tag, slug__iexact=slug)
-        return render(request, 'blog/tag_detail.html', context={'tag': tag})
+class TagDetail(ObjectDetailMixin, View):
+    model: Type[Any] = Tag
+    template: str = 'blog/tag_detail.html'
 
