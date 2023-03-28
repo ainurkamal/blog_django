@@ -5,7 +5,10 @@ from django.core.exceptions import ValidationError
 
 class TagForm(forms.Form):
     title: str = forms.CharField(max_length=50)
-    slug: str = forms.SlugField(max_length=50)
+    slug: str = forms.CharField(max_length=50)
+
+    title.widget.attrs.update({'class': 'form-control'})
+    slug.widget.attrs.update({'class': 'form-control'})
 
     def clean_slug(self: 'TagForm') -> str:
         new_slug: str = self.cleaned_data['slug'].lower()
