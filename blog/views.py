@@ -4,7 +4,7 @@ from django.views.generic import View
 from django.shortcuts import redirect
 
 from .models import Post, Tag
-from .utils import ObjectDetailMixin
+from .utils import ObjectDetailMixin, ObjectCreateMixin
 from .forms import TagForm, PostForm
 
 from typing import List, Type, Any
@@ -27,24 +27,12 @@ class PostDetail(ObjectDetailMixin, View):
     template: str = 'blog/post_detail.html'
 
 
-class PostCreate(View):
+class PostCreate(ObjectCreateMixin , View):
     """
-    Creates a new Post object.
-    A response containing a form for creating a new Post object.
+    Controller for creating a new blog post.
     """
-
-    def get(self: 'PostCreate', request: HttpRequest) -> HttpResponse:
-        """Displays a form for creating a new Post object."""
-        form: PostForm = PostForm()
-        return render(request, 'blog/post_create_form.html', context={'form': form})
-
-    def post(self: 'PostCreate', request: HttpRequest) -> HttpResponse:
-        """Creates a new Post object from the form data."""
-        bound_form: PostForm = PostForm(request.POST)
-        if bound_form.is_valid():
-            new_post: Post = bound_form.save()
-            return redirect(new_post)
-        return render(request, 'blog/post_create_form.html', context={'form': bound_form})
+    form_model: Type[Any] = PostForm
+    template: str = 'blog/post_create_form.html'
 
 
 def tags_list(request: HttpRequest) -> HttpResponse:
@@ -64,21 +52,9 @@ class TagDetail(ObjectDetailMixin, View):
     template: str = 'blog/tag_detail.html'
 
 
-class TagCreate(View):
+class TagCreate(ObjectCreateMixin, View):
     """
-    Creates a new Tag object.
-    A response containing a form for creating a new Tag object.
+    Controller for creating a new tag.
     """
-
-    def get(self: 'TagCreate', request: HttpRequest) -> HttpResponse:
-        """Returns a HttpResponse containing a form for creating a new Tag object."""
-        form: TagForm = TagForm()
-        return render(request, 'blog/tag_create.html', context={'form': form})
-
-    def post(self: 'TagCreate', request: HttpRequest) -> HttpResponse:
-        """Creates a new Tag object from the form data."""
-        bound_form: TagForm = TagForm(request.POST)
-        if bound_form.is_valid():
-            new_tag: Tag = bound_form.save()
-            return redirect(new_tag)
-        return render(request, 'blog/tag_create.html', context={'form': bound_form})
+    form_model: Type[Any] = TagForm
+    template: str = 'blog/tag_create.html'
