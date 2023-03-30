@@ -5,6 +5,9 @@ from typing import List
 
 
 class PostForm(forms.ModelForm):
+    """
+    A form for creating or updating a Post object.
+    """
     class Meta:
         model: 'Post' = Post
         fields: List[str] = ['title', 'slug', 'body', 'tags']
@@ -17,6 +20,10 @@ class PostForm(forms.ModelForm):
         }
 
         def clean_slug(self: 'PostForm') -> str:
+            """
+            Validates the 'slug' field to ensure that it is not the same as 'create'.
+            Raises ValidationError if the 'slug' field is the same as 'create'.
+            """
             new_slug: str = self.cleaned_data['slug'].lower()
 
             if new_slug == 'create':
@@ -25,6 +32,9 @@ class PostForm(forms.ModelForm):
 
 
 class TagForm(forms.ModelForm):
+    """
+    A form for creating or updating a Tag object.
+    """
     class Meta:
         model: 'Tag' = Tag
         fields: List[str] = ['title', 'slug']
@@ -35,6 +45,10 @@ class TagForm(forms.ModelForm):
         }
 
     def clean_slug(self: 'TagForm') -> str:
+        """
+        Validates the 'slug' field to ensure that it is unique and not the same as 'create'.
+        Raises ValidationError if the 'slug' field is not unique or is the same as 'create'.
+        """
         new_slug: str = self.cleaned_data['slug'].lower()
 
         if new_slug == 'create':
