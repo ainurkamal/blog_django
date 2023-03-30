@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <form class="" action=""{% url 'post_create_url' %} method="post">
+    <form class="" action="{% url 'post_create_url' %}" method="post">
         {% csrf_token %}
 
         {% for field in form %}
@@ -23,9 +23,4 @@
             Create post
         </button>
     </form>
-{% endblock %}    def post(self: 'TagCreate', request: HttpRequest) -> HttpResponse:
-        bound_form = TagForm(request.POST)
-        if bound_form.is_valid():
-            new_tag = bound_form.save()
-            return redirect(new_tag)
-        return render(request, 'blog/tag_create.html', context={'form': bound_form})
+{% endblock %}

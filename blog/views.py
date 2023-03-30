@@ -43,7 +43,8 @@ class PostCreate(View):
         bound_form: PostForm = PostForm(request.POST)
         if bound_form.is_valid():
             new_post: Post = bound_form.save()
-            return render(request, 'blog/post_create_form.html', context={'form': bound_form})
+            return redirect(new_post)
+        return render(request, 'blog/post_create_form.html', context={'form': bound_form})
 
 
 def tags_list(request: HttpRequest) -> HttpResponse:
