@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 
 from .models import Post, Tag
 from .utils import ObjectDetailMixin
-from .forms import TagForm
+from .forms import TagForm, PostForm
 
 from typing import List
 from typing import Type, Any
@@ -21,6 +21,18 @@ class PostDetail(ObjectDetailMixin, View):
     template: str = 'blog/post_detail.html'
 
 
+class PostCreate(View):
+    def get(self: 'PostCreate', request: HttpRequest) -> HttpResponse:
+        form: PostForm = PostForm()
+        return render(request, 'blog/post_create_form.html', context={'form': form})
+
+    def post(self: 'PostCreate', request: HttpRequest) -> HttpResponse:
+        bound_form: PostForm = PostForm(request.POST)
+        if bound_form.is_valid():
+            new_post: Post = bound_form.save()
+            return render(request, 'blog/post_create_form.html', context={'form': bound_form})
+
+
 def tags_list(request: HttpRequest) -> HttpResponse:
     tags: List[Tag] = Tag.objects.all()
     return render(request, 'blog/tags_list.html', context={'tags': tags})
@@ -33,12 +45,12 @@ class TagDetail(ObjectDetailMixin, View):
 
 class TagCreate(View):
     def get(self: 'TagCreate', request: HttpRequest) -> HttpResponse:
-        form = TagForm()
+        form: TagForm = TagForm()
         return render(request, 'blog/tag_create.html', context={'form': form})
-    
+
     def post(self: 'TagCreate', request: HttpRequest) -> HttpResponse:
-        bound_form = TagForm(request.POST)
+        bound_form: TagForm = TagForm(request.POST)
         if bound_form.is_valid():
-            new_tag = bound_form.save()
+            new_tag: Tag = bound_form.save()
             return redirect(new_tag)
         return render(request, 'blog/tag_create.html', context={'form': bound_form})
