@@ -84,3 +84,31 @@ class ObjectUpdateMixin:
             request, self.template,
             context={'form': bound_form, self.model.__name__.lower(): obj}
         )
+
+
+class ObjectDeleteMixin:
+    """
+    A mixin that provides a GET and POST view to delete an object.
+    """
+    model: Type[Any] = None
+    template: str = None
+    redirect_url: str = None
+
+    def get(self, request: HttpRequest, slug: str) -> HttpResponse:
+        """
+        Renders the form to delete the object.
+        A response containing the mapping of an object using a template.
+        """
+        obj: Any = self.model.objects.get(slug__iexact=slug)
+        return render(
+            request, self.template,
+            context={self.model.__name__.lower(): obj}
+        )
+    
+    def post(self, request: HttpRequest, slug: str) -> HttpResponse:
+        """
+        Delete the object and redirect to the specified URL.
+        """
+        obj: Any = self.model.objects.get(slug__iexact=slug)
+        obj.delete()
+        return redirect(reverse(self.redirect_url))

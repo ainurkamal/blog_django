@@ -83,23 +83,7 @@ class TagDelete(View):
     """
     Controller for deleting a tag.
     """
-    def get(self, request: HttpRequest, slug: str) -> HttpResponse:
-        """
-        Renders the form to delete the object.
-        A response containing the mapping of an object using a template.
-        """
-        tag: Any = Tag.objects.get(slug__iexact=slug)
-        return render(
-            request, 'blog/tag_delete_form.html',
-            context={'tag': tag}
-        )
-    
-    def post(self, request: HttpRequest, slug: str) -> HttpResponse:
-        """
-        Handles the form submission and deletes the object.
-        A response containing the mapping of an object using a template.
-        """
-        tag: Any = Tag.objects.get(slug__iexact=slug)
-        tag.delete()
-        return redirect(reverse('tags_list_url'))
+    model: Type[Any] = Tag
+    template: str = 'blog/tag_delete_form.html'
+    redirect_url: str = 'tags_list_url'
     
