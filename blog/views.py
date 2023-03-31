@@ -4,7 +4,7 @@ from django.views.generic import View
 from django.shortcuts import redirect
 
 from .models import Post, Tag
-from .utils import ObjectDetailMixin, ObjectCreateMixin
+from .utils import *
 from .forms import TagForm, PostForm
 
 from typing import List, Type, Any
@@ -35,6 +35,15 @@ class PostCreate(ObjectCreateMixin , View):
     template: str = 'blog/post_create_form.html'
 
 
+class PostUpdate(ObjectUpdateMixin, View):
+    """
+    Controller for updating a blog post.
+    """
+    model: Type[Any] = Post
+    form_model: Type[Any] = PostForm
+    template: str = 'blog/post_update_form.html'
+
+
 def tags_list(request: HttpRequest) -> HttpResponse:
     """
     Returns a response containing a list of all the tags.
@@ -58,3 +67,12 @@ class TagCreate(ObjectCreateMixin, View):
     """
     form_model: Type[Any] = TagForm
     template: str = 'blog/tag_create.html'
+
+
+class TagUpdate(ObjectUpdateMixin, View):
+    """
+    Controller for updating a tag.
+    """
+    model: Type[Any] = Tag
+    form_model: Type[Any] = TagForm
+    template: str = 'blog/tag_update_form.html'

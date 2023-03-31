@@ -22,7 +22,7 @@ class ObjectDetailMixin:
         """
         obj = get_object_or_404(self.model, slug__iexact=slug)
         return render(request, self.template, context={self.model.__name__.lower(): obj})
-    
+
 
 class ObjectCreateMixin:
     """
@@ -45,3 +45,42 @@ class ObjectCreateMixin:
             new_obj = bound_form.save()
             return redirect(new_obj)
         return render(request, self.template, context={'form': bound_form})
+
+
+class ObjectUpdateMixin:
+    """
+    A mixin for updating an existing object using a form. 
+    It provides a `get` method that renders the form to update the object, 
+    and a `post` method that handles the form submission and updates the object.
+    """
+    model: Type[Any] = None
+    form_model: Type[Any] = None
+    template: str = None
+
+    def get(self, request: HttpRequest, slug: str) -> HttpResponse:
+        """
+        Renders the form to update the object.
+        A response containing the mapping of an object using a template.
+        """
+        obj: Any = self.model.objects.get(slug__iexact=slug)
+        bound_form: Any = self.form_model(instance=obj)
+        return render(
+            request, self.template,
+            context={'form': bound_form, self.model.__name__.lower(): obj}
+        )
+
+    def post(self, request: HttpRequest, slug: str) -> HttpResponse:
+        """
+        Handles the form submission and updates the object.
+        A response containing the mapping of an object using a template.
+        """
+        obj: Any = self.model.objects.get(slug__iexact=slug)
+        bound_form: Any = self.form_model(request.POST, instance=obj)
+
+        if bound_form.is_valid():
+            new_obj: Any = bound_form.save()
+            return redirect(new_obj)
+        return render(
+            request, self.template,
+            context={'form': bound_form, self.model.__name__.lower(): obj}
+        )
