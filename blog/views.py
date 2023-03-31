@@ -2,6 +2,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views.generic import View
 from django.shortcuts import redirect
+from django.urls import reverse
 
 from .models import Post, Tag
 from .utils import *
@@ -76,3 +77,29 @@ class TagUpdate(ObjectUpdateMixin, View):
     model: Type[Any] = Tag
     form_model: Type[Any] = TagForm
     template: str = 'blog/tag_update_form.html'
+
+
+class TagDelete(View):
+    """
+    Controller for deleting a tag.
+    """
+    def get(self, request: HttpRequest, slug: str) -> HttpResponse:
+        """
+        Renders the form to delete the object.
+        A response containing the mapping of an object using a template.
+        """
+        tag: Any = Tag.objects.get(slug__iexact=slug)
+        return render(
+            request, 'blog/tag_delete_form.html',
+            context={'tag': tag}
+        )
+    
+    def post(self, request: HttpRequest, slug: str) -> HttpResponse:
+        """
+        Handles the form submission and deletes the object.
+        A response containing the mapping of an object using a template.
+        """
+        tag: Any = Tag.objects.get(slug__iexact=slug)
+        tag.delete()
+        return redirect(reverse('tags_list_url'))
+    
