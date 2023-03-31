@@ -58,3 +58,13 @@ class TagCreate(ObjectCreateMixin, View):
     """
     form_model: Type[Any] = TagForm
     template: str = 'blog/tag_create.html'
+
+
+class TagUpdate(View):
+    """
+    Controller for updating a tag.
+    """
+    def get(self: 'TagUpdate', request: HttpRequest, slug: str) -> HttpResponse:
+        tag: Tag = Tag.objects.get(slug__iexact=slug)
+        bound_form: TagForm = TagForm(instance=tag)
+        return render(request, 'blog/tag_update_form.html', context={'form': bound_form, 'tag': tag})
