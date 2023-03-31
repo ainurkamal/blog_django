@@ -4,7 +4,7 @@ from django.views.generic import View
 from django.shortcuts import redirect
 
 from .models import Post, Tag
-from .utils import ObjectDetailMixin, ObjectCreateMixin
+from .utils import *
 from .forms import TagForm, PostForm
 
 from typing import List, Type, Any
@@ -60,23 +60,10 @@ class TagCreate(ObjectCreateMixin, View):
     template: str = 'blog/tag_create.html'
 
 
-class TagUpdate(View):
+class TagUpdate(ObjectUpdateMixin, View):
     """
     Controller for updating a tag.
     """
-    def get(self: 'TagUpdate', request: HttpRequest, slug: str) -> HttpResponse:
-        tag: Tag = Tag.objects.get(slug__iexact=slug)
-        bound_form: TagForm = TagForm(instance=tag)
-        return render(request, 'blog/tag_update_form.html', context={'form': bound_form, 'tag': tag})
-    
-    def post(self: 'TagUpdate', request: HttpRequest, slug: str) -> HttpResponse:
-        """
-        Updates a tag.
-        """
-        tag: Tag = Tag.objects.get(slug__iexact=slug)
-        bound_form: TagForm = TagForm(request.POST, instance=tag)
-
-        if bound_form.is_valid():
-            new_tag: Tag = bound_form.save()
-            return redirect(new_tag)
-        return render(request, 'blog/tag_update_form.html', context={'form': bound_form, 'tag': tag})
+    model: Type[Any] = Tag
+    form_model: Type[Any] = TagForm
+    template: str = 'blog/tag_update_form.html'
