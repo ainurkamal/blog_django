@@ -45,6 +45,15 @@ class PostUpdate(ObjectUpdateMixin, View):
     template: str = 'blog/post_update_form.html'
 
 
+class PostDelete(ObjectDeleteMixin, View):
+    """
+    Controller for deleting a blog post.
+    """
+    model: Type[Any] = Post
+    template: str = 'blog/post_delete_form.html'
+    redirect_url: str = 'posts_list_url'
+
+
 def tags_list(request: HttpRequest) -> HttpResponse:
     """
     Returns a response containing a list of all the tags.
