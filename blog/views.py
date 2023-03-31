@@ -79,7 +79,7 @@ class TagUpdate(ObjectUpdateMixin, View):
     template: str = 'blog/tag_update_form.html'
 
 
-class TagDelete(View):
+class TagDelete(ObjectDeleteMixin, View):
     """
     Controller for deleting a tag.
     """
