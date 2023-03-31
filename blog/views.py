@@ -35,6 +35,15 @@ class PostCreate(ObjectCreateMixin , View):
     template: str = 'blog/post_create_form.html'
 
 
+class PostUpdate(ObjectUpdateMixin, View):
+    """
+    Controller for updating a blog post.
+    """
+    model: Type[Any] = Post
+    form_model: Type[Any] = PostForm
+    template: str = 'blog/post_update_form.html'
+
+
 def tags_list(request: HttpRequest) -> HttpResponse:
     """
     Returns a response containing a list of all the tags.
