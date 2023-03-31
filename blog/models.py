@@ -43,6 +43,12 @@ class Post(models.Model):
         """
         return reverse('post_update_url', kwargs={'slug': self.slug})
 
+    def get_delete_url(self: 'Post') -> str:
+        """
+        Return the URL to access a form to delete this post.
+        """
+        return reverse('post_delete_url', kwargs={'slug': self.slug})
+
     def __str__(self: 'Post') -> str:
         """
         Return a string representation of this post.
@@ -80,6 +86,12 @@ class Tag(models.Model):
         Return the URL to access a form to update this tag.
         """
         return reverse('tag_update_url', kwargs={'slug': self.slug})
+    
+    def get_delete_url(self: 'Tag') -> str:
+        """
+        Return the URL to access a form to delete this tag.
+        """
+        return reverse('tag_delete_url', kwargs={'slug': self.slug})
 
     def __str__(self: 'Tag') -> str:
         """
