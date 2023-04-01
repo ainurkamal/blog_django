@@ -51,28 +51,24 @@
                     There is no any content
                 {% endblock %}
 
-                <nav aria-label="Page navigation example">
+                <nav aria-label="...">
                     <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
+                        <li class="page-item disabled">
+                            <a class="page-link">Previous</a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">
-                                1
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">
-                                2
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">
-                                3
-                            </a>
-                        </li>
+                
+                        {% for num in page_object.paginator.page_range %}
+                
+                            {% if page_object.number == num %}
+                                <li class="page-item active" aria-current="page">
+                                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item">
+                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
                         <li class="page-item">
                             <a class="page-link" href="#" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>

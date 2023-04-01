@@ -23,7 +23,7 @@ def posts_list(request: HttpRequest) -> HttpResponse:
 
     page_number = request.GET.get('page', 1)
     page = paginator.get_page(page_number)
-    return render(request, 'blog/index.html', context={'posts': page.object_list})
+    return render(request, 'blog/index.html', context={'page_object': page})
 
 
 class PostDetail(ObjectDetailMixin, View):
