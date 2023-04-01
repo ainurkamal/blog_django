@@ -4,6 +4,8 @@ import string
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 def generate_tag(length):
@@ -30,7 +32,8 @@ try:  # Fill form
 
     time.sleep(1)
 
-    create_tag_button = browser.find_element(By.CSS_SELECTOR, 'button[type="submit"]')
+    wait = WebDriverWait(browser, 10)
+    create_tag_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[type="submit"]')))
     create_tag_button.click()
 
     time.sleep(1)
