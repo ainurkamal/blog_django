@@ -27,3 +27,8 @@
 a.edit, a.delete {
     display: none;
 }
+
+.navbar-nav .nav-link {
+    font-size: 20px;
+    font-weight: bold;
+}
