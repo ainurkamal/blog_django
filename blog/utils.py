@@ -21,7 +21,15 @@ class ObjectDetailMixin:
         A response containing the mapping of an object using a template.
         """
         obj = get_object_or_404(self.model, slug__iexact=slug)
-        return render(request, self.template, context={self.model.__name__.lower(): obj})
+        return render(
+            request,
+            self.template,
+            context={
+                self.model.__name__.lower(): obj,
+                'admin_object': obj,
+                'detail': True
+            }
+        )
 
 
 class ObjectCreateMixin:
@@ -104,7 +112,7 @@ class ObjectDeleteMixin:
             request, self.template,
             context={self.model.__name__.lower(): obj}
         )
-    
+
     def post(self, request: HttpRequest, slug: str) -> HttpResponse:
         """
         Delete the object and redirect to the specified URL.

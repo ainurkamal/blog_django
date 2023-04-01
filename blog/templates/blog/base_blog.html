@@ -2,6 +2,12 @@
 
 {% block admin-panel %}
     <a href="" class="btn btn-primary">Create</a>
-    <a href="" class="btn btn-primary">Edit</a>
-    <a href="" class="btn btn-primary">Delete</a>
+    {% if detail %}
+        <a href="{{ admin_object.get_update_url }}" class="btn btn-warning" style="">
+            Edit
+        </a>
+        <a href="{{ admin_object.get_delete_url }}" class="btn btn-danger" style="">
+            Delete
+        </a>
+    {% endif %}
 {% endblock %}
