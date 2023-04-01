@@ -55,13 +55,15 @@
         </div>
     </div>
 
-    <div class="admin-panel  aligns-items-center">
-        <a href="/admin" class="btn btn-info">
-            Admin
-        </a>
-        {% block admin-panel %}
-        {% endblock %}
-    </div>
+    {% if request.user.is_authenticated and request.user.is_staff %}
+        <div class="admin-panel  aligns-items-center">
+            <a href="/admin" class="btn btn-info">
+                Admin
+            </a>
+            {% block admin-panel %}
+            {% endblock %}
+        </div>
+    {% endif %}
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

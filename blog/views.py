@@ -2,6 +2,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views.generic import View
 from django.shortcuts import redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 
 from .models import Post, Tag
@@ -28,30 +29,33 @@ class PostDetail(ObjectDetailMixin, View):
     template: str = 'blog/post_detail.html'
 
 
-class PostCreate(ObjectCreateMixin , View):
+class PostCreate(LoginRequiredMixin, ObjectCreateMixin , View):
     """
     Controller for creating a new blog post.
     """
     form_model: Type[Any] = PostForm
     template: str = 'blog/post_create_form.html'
+    raise_exception: bool = True
 
 
-class PostUpdate(ObjectUpdateMixin, View):
+class PostUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
     """
     Controller for updating a blog post.
     """
     model: Type[Any] = Post
     form_model: Type[Any] = PostForm
     template: str = 'blog/post_update_form.html'
+    raise_exception: bool = True
 
 
-class PostDelete(ObjectDeleteMixin, View):
+class PostDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
     """
     Controller for deleting a blog post.
     """
     model: Type[Any] = Post
     template: str = 'blog/post_delete_form.html'
     redirect_url: str = 'posts_list_url'
+    raise_exception: bool = True
 
 
 def tags_list(request: HttpRequest) -> HttpResponse:
@@ -71,28 +75,31 @@ class TagDetail(ObjectDetailMixin, View):
     template: str = 'blog/tag_detail.html'
 
 
-class TagCreate(ObjectCreateMixin, View):
+class TagCreate(LoginRequiredMixin, ObjectCreateMixin, View):
     """
     Controller for creating a new tag.
     """
     form_model: Type[Any] = TagForm
     template: str = 'blog/tag_create.html'
+    raise_exception: bool = True
 
 
-class TagUpdate(ObjectUpdateMixin, View):
+class TagUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
     """
     Controller for updating a tag.
     """
     model: Type[Any] = Tag
     form_model: Type[Any] = TagForm
     template: str = 'blog/tag_update_form.html'
+    raise_exception: bool = True
 
 
-class TagDelete(ObjectDeleteMixin, View):
+class TagDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
     """
     Controller for deleting a tag.
     """
     model: Type[Any] = Tag
     template: str = 'blog/tag_delete_form.html'
     redirect_url: str = 'tags_list_url'
+    raise_exception: bool = True
     
