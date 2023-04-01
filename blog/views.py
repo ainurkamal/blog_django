@@ -4,6 +4,7 @@ from django.views.generic import View
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
+from django.core.paginator import Paginator
 
 from .models import Post, Tag
 from .utils import *
@@ -18,7 +19,11 @@ def posts_list(request: HttpRequest) -> HttpResponse:
     A response containing a list of all the posts.
     """
     posts: List[Post] = Post.objects.all()
-    return render(request, 'blog/index.html', context={'posts': posts})
+    paginator = Paginator(posts, 3)
+
+    page_number = request.GET.get('page', 1)
+    page = paginator.get_page(page_number)
+    return render(request, 'blog/index.html', context={'posts': page.object_list})
 
 
 class PostDetail(ObjectDetailMixin, View):
@@ -102,4 +107,5 @@ class TagDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
     template: str = 'blog/tag_delete_form.html'
     redirect_url: str = 'tags_list_url'
     raise_exception: bool = True
+
     

@@ -49,12 +49,6 @@ class Post(models.Model):
         """
         return reverse('post_delete_url', kwargs={'slug': self.slug})
 
-    def __str__(self: 'Post') -> str:
-        """
-        Return a string representation of this post.
-        """
-        return self.title
-
     def save(self: 'Post', *args: Any, **kwargs: Any) -> None:
         """
         Save this post to the database, generating a slug if one is not provided.
@@ -62,6 +56,15 @@ class Post(models.Model):
         if not self.id:
             self.slug = generate_slug(self.title)
         super().save(*args, **kwargs)
+
+    def __str__(self: 'Post') -> str:
+        """
+        Return a string representation of this post.
+        """
+        return self.title
+    
+    class Meta:
+        ordering: list = ['-date_pub']
 
 
 class Tag(models.Model):
@@ -98,3 +101,6 @@ class Tag(models.Model):
         Return a string representation of this tag.
         """
         return f'{self.title}'
+    
+    class Meta:
+        ordering: list = ['title']
