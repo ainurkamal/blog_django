@@ -4,37 +4,39 @@ from django.views.generic import View
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, Page, EmptyPage
 
 from .models import Post, Tag
 from .utils import *
 from .forms import TagForm, PostForm
 
-from typing import List, Type, Any
+from typing import List, Type, Any, Union
 
 
 def posts_list(request: HttpRequest) -> HttpResponse:
     """
-    Returns a response containing a list of all the posts.
-    A response containing a list of all the posts.
+    Renders a paginated list of all the posts in the database.
+    The posts are ordered by the date created, newest first.
+
+    Returns HTTP response object, containing the rendered template.
     """
     posts: List[Post] = Post.objects.all()
-    paginator = Paginator(posts, 3)
+    paginator: Paginator = Paginator(posts, 3)
 
-    page_number = request.GET.get('page', 1)
-    page = paginator.get_page(page_number)
+    page_number: int = request.GET.get('page', 1)
+    page: Union[Page, EmptyPage] = paginator.get_page(page_number)
 
-    is_paginated = page.has_other_pages()
+    is_paginated: bool = page.has_other_pages()
 
     if page.has_previous():
-        prev_url = f'?page={page.previous_page_number()}'
+        prev_url: str = f'?page={page.previous_page_number()}'
     else:
-        prev_url = ''
+        prev_url: str = ''
 
     if page.has_next():
-        next_url = f'?page={page.next_page_number()}'
+        next_url: str = f'?page={page.next_page_number()}'
     else:
-        next_url = ''
+        next_url: str = ''
 
     context = {
         'page_object': page,
