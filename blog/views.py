@@ -2,6 +2,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views.generic import View
 from django.shortcuts import redirect
+from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.core.paginator import Paginator, Page, EmptyPage
@@ -20,7 +21,16 @@ def posts_list(request: HttpRequest) -> HttpResponse:
 
     Returns HTTP response object, containing the rendered template.
     """
-    posts: List[Post] = Post.objects.all()
+    search_query: str = request.GET.get('search', '')
+
+    if search_query:
+        posts: List[Post] = Post.objects.filter(
+            Q(title__icontains=search_query)|
+            Q(body__icontains=search_query)
+        )
+    else:
+        posts: List[Post] = Post.objects.all()
+
     paginator: Paginator = Paginator(posts, 3)
 
     page_number: int = request.GET.get('page', 1)
