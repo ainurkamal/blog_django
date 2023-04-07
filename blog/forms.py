@@ -13,9 +13,9 @@ class PostForm(forms.ModelForm):
         fields: List[str] = ['title', 'slug', 'body', 'tags']
 
         widgets: dict = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Input title'}),
-            'slug': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Input slug'}),
-            'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Input text'}),
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите заголовок поста'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите уникальный адрес поста'}),
+            'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Введите текст поста'}),
             'tags': forms.SelectMultiple(attrs={'class': 'form-control'}),
         }
 
@@ -27,7 +27,7 @@ class PostForm(forms.ModelForm):
             new_slug: str = self.cleaned_data['slug'].lower()
 
             if new_slug == 'create':
-                raise ValidationError('Slug may not be "create"')
+                raise ValidationError(f'Адрес тега должен быть уникальным. "{new_slug}" уже используется.')
             return new_slug
 
 
@@ -40,8 +40,8 @@ class TagForm(forms.ModelForm):
         fields: List[str] = ['title', 'slug']
 
         widgets: dict = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Input title'}),
-            'slug': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Input slug'})
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите загловок тега'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите уникальный адрес тега'})
         }
 
     def clean_slug(self: 'TagForm') -> str:
@@ -52,10 +52,10 @@ class TagForm(forms.ModelForm):
         new_slug: str = self.cleaned_data['slug'].lower()
 
         if new_slug == 'create':
-            raise forms.ValidationError('Slug may not be "create"')
+            raise forms.ValidationError('Уникальный адрес тега не может быть "create"')
 
         if Tag.objects.filter(slug__iexact=new_slug).count():
             raise forms.ValidationError(
-                f'Slug must be unique. "{new_slug}" slug already exists')
+                f'Адрес тега должен быть уникальным. "{new_slug}" уже используется.')
 
         return new_slug

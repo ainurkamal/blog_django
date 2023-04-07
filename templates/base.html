@@ -1,6 +1,6 @@
 {% load static %}
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="utf-8">
@@ -8,7 +8,7 @@
     
     <title>
         {% block title %}
-            Block engine
+            Блог
         {% endblock %}
     </title>
 
@@ -25,18 +25,18 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active nav-posts" aria-current="page" href="{% url 'posts_list_url' %}">
-                            Posts
+                            Посты
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active nav-tags" aria-current="page" href="{% url 'tags_list_url' %}">
-                            Tags
+                            Теги
                         </a>
                     </li>
                     <form class="d-flex" role="search" action="{% url 'posts_list_url' %}">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                        <input class="form-control me-2" type="search" placeholder="Поиск по сайту" aria-label="Search" name="search">
                         <button class="btn btn-outline-success" type="submit">
-                            Search
+                            Найти
                         </button>
                     </form>
                 </ul>
@@ -48,7 +48,7 @@
             <div class="col-6 offset-md-2">
                 
                 {% block content %}
-                    There is no any content
+                    Здесь пока ничего нет
                 {% endblock %}
 
                 {% if is_paginated %}
@@ -56,7 +56,7 @@
                         <ul class="pagination">
                             <li class="page-item {% if not prev_url %} disabled {% endif %}">
                                 <a class="page-link" href="{{ prev_url }}">
-                                    Previous
+                                    Назад
                                 </a>
                             </li>
                     
@@ -78,7 +78,7 @@
                             {% endfor %}
                             <li class="page-item {% if not next_url %} disabled {% endif %}">
                                 <a class="page-link" href="{{ next_url }}">
-                                    Next
+                                    Далее
                                 </a>
                             </li>
                         </ul>
@@ -92,7 +92,7 @@
     {% if request.user.is_authenticated and request.user.is_staff %}
         <div class="admin-panel  aligns-items-center">
             <a href="/admin" class="btn btn-info">
-                Admin
+                Административная панель
             </a>
             {% block admin-panel %}
             {% endblock %}

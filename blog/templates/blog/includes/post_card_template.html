@@ -1,6 +1,6 @@
 <div class="card mb-4">
     <div class="card-header">
-        {{ post.date_pub }}
+        {{ post.date_pub|date:"d.m.Y" }}
     </div>
     <div class="card-body">
         <h5 class="card-title">
@@ -10,11 +10,11 @@
             {{ post.body|truncatewords:15 }}
         </p>
         <a href="{{ post.get_absolute_url }}" class="btn btn-dark">
-            Read
+            Читать далее
         </a>
     </div>
     <div class="card-footer text-muted">
-        Tags:
+        Теги:
         {% for tag in post.tags.all %}
             <a href="{{ tag.get_absolute_url }}">
                 {{ tag.title }}
