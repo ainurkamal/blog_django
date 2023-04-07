@@ -1,14 +1,21 @@
 {% extends 'base.html' %}
 
-
 {% block admin-panel %}
 <div class="btn-group">
     <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         Создать
     </button>
     <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="{% url 'post_create_url' %}">Пост</a></li>
-        <li><a class="dropdown-item" href="{% url 'tag_create_url' %}">Тег</a></li>
+        <li>
+            <a class="dropdown-item" href="{% url 'post_create_url' %}">
+                Пост
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" href="{% url 'tag_create_url' %}">
+                Тег
+            </a>
+        </li>
     </ul>
 </div>
 {% if detail %}

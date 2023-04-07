@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="mb-5">Теги</h1>
-
+    <div class="mx-auto text-center">
     {% for tag in tags %}
     <h3>
-        <a href="{{ tag.get_absolute_url }}" class="tag_link">
+        <a href="{{ tag.get_absolute_url }}" class="tag_link link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
             {{ tag.title }}
         </a>
     </h3>
     {% endfor %}
+    </div>
 {% endblock %}

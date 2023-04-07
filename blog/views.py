@@ -1,10 +1,8 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views.generic import View
-from django.shortcuts import redirect
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
 from django.core.paginator import Paginator, Page, EmptyPage
 
 from .models import Post, Tag
