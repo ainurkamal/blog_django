@@ -15,10 +15,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <script src="https://kit.fontawesome.com/29d55fefba.js" crossorigin="anonymous"></script>
 </head>
     
 <body>
-    
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <ul class="navbar-nav mx-auto nav-underline">
@@ -32,14 +32,16 @@
                         Теги
                     </a>
                 </li>
-                <form class="d-flex justify-content-lg-end" role="search" action="{% url 'posts_list_url' %}">
-                    <input class="form-control me-2" type="search" placeholder="Поиск по сайту" aria-label="Search" name="search">
-                    <button class="btn btn-outline-dark" type="submit">
-                        Найти
-                    </button>
-                </form>
             </ul>
         </div>
+        <form class="d-flex justify-content-lg-end" role="search" action="{% url 'posts_list_url' %}">
+            <div class="input-group">
+                <input class="form-control" type="search" placeholder="Поиск по сайту" aria-label="Search" name="search">
+                <button class="btn btn-outline-dark" type="submit">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </button>
+            </div>
+        </form>
     </nav>
 
     <div class="container mt-5">
