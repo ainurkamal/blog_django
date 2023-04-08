@@ -1,3 +1,4 @@
+/* Add scroll to all pages */
 body {
     overflow-y: scroll;
 }
@@ -15,6 +16,18 @@ ul.navbar-nav {
     left: 50%;
     transform: translateX(-50%);
 }
+
+.card-title {
+    background-color: #313131;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+
+.card:hover .card-title {
+    background-color: #fff;
+    color: #313131;
+}
+
 
 /* For tag create input placeholder */
 .form-control::placeholder {

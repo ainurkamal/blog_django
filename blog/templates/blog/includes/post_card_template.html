@@ -1,8 +1,18 @@
+{% load static %}
 <div class="card mb-4">
-    <div class="card-header">
-        {{ post.date_pub|date:"d.m.Y" }}
+    <div class="card">
+        <img src="{% static 'images/Yantra.jpg' %}" class="card-img" alt="...">
+        <div class="card-img-overlay">
+            <h5 class="card-title p-2 d-inline-flex">
+                Card title
+            </h5>
+        </div>
     </div>
-    <div class="card-body">
+</div>
+    <!-- <div class="card-header">
+        {{ post.date_pub|date:"d.m.Y" }}
+    </div> -->
+    <!-- <div class="card-body">
         <h5 class="card-title">
             {{ post.title }}
         </h5>
@@ -20,5 +30,4 @@
                 {{ tag.title }}
             </a>
         {% endfor %}
-    </div>
-</div>
+    </div> -->
