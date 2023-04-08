@@ -1,3 +1,11 @@
+.nav-posts,
+.nav-tags {
+    font-size: 27px;
+    /* размер шрифта */
+    font-weight: semibold;
+    /* жирный шрифт */
+}
+
 /* For tag create input placeholder */
 .form-control::placeholder {
     color: #999;
@@ -27,4 +35,3 @@
 a.edit, a.delete {
     display: none;
 }
-
