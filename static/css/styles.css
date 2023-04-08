@@ -3,20 +3,24 @@ body {
     overflow-y: scroll;
 }
 
+
+/* Navbar settings */
 .nav-posts,
 .nav-tags {
     font-size: 27px;
-    /* размер шрифта */
     font-weight: semibold;
-    /* жирный шрифт */
 }
 
+
+/* Navbar links absolute postion on centre */
 ul.navbar-nav {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
 }
 
+
+/* Color trancitions for posts titles */
 .card-title {
     background-color: #313131;
     color: #fff;
@@ -36,6 +40,8 @@ ul.navbar-nav {
     font-size: 1em;
 }
 
+
+/* Admin panel */
 .admin-panel {
     border: 1px solid #999;
     border-radius: 2px;

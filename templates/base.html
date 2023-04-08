@@ -16,6 +16,10 @@
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <script src="https://kit.fontawesome.com/29d55fefba.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-xYtjLHq3GquB38BXD5j5OD5Fz8pWfsEhRz29eOXgOwcb7bPtbkaRkR0gRW9X/gjjOJ8qHlEICvnddBu6lrY1Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
     
 <body>
@@ -31,6 +35,8 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link nav-tags" aria-current="page" href="{% url 'tags_list_url' %}">
+                        <i class="fa fa-tags"></i>
+
                         Теги
                     </a>
                 </li>
