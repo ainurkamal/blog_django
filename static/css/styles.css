@@ -1,9 +1,19 @@
+body {
+    overflow-y: scroll;
+}
+
 .nav-posts,
 .nav-tags {
     font-size: 27px;
     /* размер шрифта */
     font-weight: semibold;
     /* жирный шрифт */
+}
+
+ul.navbar-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* For tag create input placeholder */
