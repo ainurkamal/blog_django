@@ -26,7 +26,6 @@ class Post(models.Model):
     """
     title: str = models.CharField(max_length=150, db_index=True)
     slug: str = models.SlugField(max_length=150, blank=True, unique=True)
-    image: str = models.ImageField(upload_to='images/', blank=True, null=True)
     body: str = models.TextField(blank=True, db_index=True)
     tags: Type['Tag'] = models.ManyToManyField(
         'Tag', blank=True, related_name='posts')
@@ -49,15 +48,6 @@ class Post(models.Model):
         Return the URL to access a form to delete this post.
         """
         return reverse('post_delete_url', kwargs={'slug': self.slug})
-    
-    def get_image_url(self):
-        """
-        Returns the URL of the post's image, or a default image if no image is attached.
-        """
-        if self.image:
-            return self.image.url
-        else:
-            return '/static/images/default.jpg'
 
     def save(self: 'Post', *args: Any, **kwargs: Any) -> None:
         """

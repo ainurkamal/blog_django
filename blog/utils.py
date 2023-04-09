@@ -48,7 +48,7 @@ class ObjectCreateMixin:
 
     def post(self, request: HttpRequest) -> HttpResponse:
         """Handles the form submission and creation of the new object."""
-        bound_form: Any = self.form_model(request.POST, request.FILES)
+        bound_form: Any = self.form_model(request.POST)
         if bound_form.is_valid():
             new_obj = bound_form.save()
             return redirect(new_obj)
