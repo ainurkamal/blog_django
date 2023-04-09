@@ -8,15 +8,18 @@ class PostForm(forms.ModelForm):
     """
     A form for creating or updating a Post object.
     """
+    image = forms.ImageField(required=False)
+
     class Meta:
         model: 'Post' = Post
-        fields: List[str] = ['title', 'slug', 'body', 'tags']
+        fields: List[str] = ['title', 'slug', 'body', 'tags', 'image']
 
         widgets: dict = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите заголовок поста'}),
             'slug': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите уникальный адрес поста'}),
             'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Введите текст поста'}),
             'tags': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'image': forms.ClearableFileInput(attrs={'multiple': True}),
         }
 
         def clean_slug(self: 'PostForm') -> str:
