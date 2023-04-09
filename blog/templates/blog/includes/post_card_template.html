@@ -2,10 +2,14 @@
 <div class="card mb-4">
     <a href="{{ post.get_absolute_url }}">
         <div class="card">
-            <!-- <img src="{% static 'images/Yantra.jpg' %}" class="card-img" alt="..."> -->
+            {% if post.image %}
+                <img src="{{ post.image.url }}" class="card-img" alt="{{ post.title }}">
+            {% else %}
+                <img src="{% static 'images/default.jpg' %}" class="card-img" alt="Default Image">
+            {% endif %}
             <div class="card-img-overlay d-flex align-items-end justify-content-center">
                 <h5 class="card-title p-2 d-inline-flex">
-                    Card title
+                    {{ post.title }}
                 </h5>
             </div>
         </div>

@@ -16,8 +16,3 @@ urlpatterns = [
     path('tag/<str:slug>/update', TagUpdate.as_view(), name='tag_update_url'),
     path('tag/<str:slug>/delete', TagDelete.as_view(), name='tag_delete_url'),
 ]
-
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
