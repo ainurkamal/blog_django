@@ -3,6 +3,8 @@ body {
     overflow-y: scroll;
 }
 
+
+/* Content container */
 .container {
     width: 1920px;
     height: 1080px;
@@ -24,8 +26,7 @@ ul.navbar-nav {
     transform: translateX(-50%);
 }
 
-
-/* Color trancitions for posts titles */
+/* Color trancitions for posts titles in card*/
 .card-title {
     background-color: #313131;
     color: #fff;
@@ -37,6 +38,19 @@ ul.navbar-nav {
     color: #313131;
 }
 
+.card {
+    position: relative;
+    border-radius: 3em 3em 3em 3em;
+    transition: transform 0.1s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    border-radius: 3em 3em 3em 3em;
+}
 
 /* For tag create input placeholder */
 .form-control::placeholder {

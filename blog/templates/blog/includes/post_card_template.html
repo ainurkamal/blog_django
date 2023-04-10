@@ -1,16 +1,16 @@
 {% load static %}
-<div class="card mb-4">
+    <div class="card mx-auto col-9 mb-5">
     <a href="{{ post.get_absolute_url }}">
-        <div class="card">
+        <div class="card-post">
             {% if post.image %}
                 <img src="{{ post.image.url }}" class="card-img" alt="{{ post.title }}">
             {% else %}
                 <img src="{% static 'images/default.jpg' %}" class="card-img" alt="Default Image">
             {% endif %}
             <div class="card-img-overlay d-flex align-items-end justify-content-center">
-                <h5 class="card-title p-2 d-inline-flex">
+                <h3 class="card-title p-2 d-inline-flex">
                     {{ post.title }}
-                </h5>
+                </h3>
             </div>
         </div>
     </a>
