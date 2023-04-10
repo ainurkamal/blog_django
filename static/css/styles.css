@@ -14,8 +14,8 @@ body {
 /* Navbar settings */
 .nav-posts,
 .nav-tags {
-    font-size: 27px;
-    font-weight: semibold;
+    font-size: 34px;
+    font-weight: bold;
 }
 
 
@@ -41,7 +41,7 @@ ul.navbar-nav {
 .card {
     position: relative;
     border-radius: 3em 3em 3em 3em;
-    transition: transform 0.1s;
+    transition: transform 0.2s ease-in-out;
 }
 
 .card:hover {
