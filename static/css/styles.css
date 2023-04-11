@@ -3,6 +3,9 @@ body {
     overflow-y: scroll;
 }
 
+ul.pagination {
+    transform: scale(1.3);
+}
 
 /* Content container */
 .container {
