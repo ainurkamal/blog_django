@@ -14,8 +14,13 @@ body {
 /* Navbar settings */
 .nav-posts,
 .nav-tags {
+    /* margin-top: 10px; */
     font-size: 34px;
     font-weight: bold;
+}
+
+.nav-logo {
+    margin-top: 9px;
 }
 
 
@@ -28,14 +33,16 @@ ul.navbar-nav {
 
 /* Color trancitions for posts titles in card*/
 .card-title {
-    background-color: #313131;
-    color: #fff;
+    font-size: 300%;
+    font-weight: bold;
+    background-color: #fff;
+    color: #313131;
     transition: all 0.2s ease-in-out;
 }
 
 .card:hover .card-title {
-    background-color: #fff;
-    color: #313131;
+    background-color: #313131;
+    color: #fff;
 }
 
 .card {

@@ -29,7 +29,7 @@ def posts_list(request: HttpRequest) -> HttpResponse:
     else:
         posts: List[Post] = Post.objects.all()
 
-    paginator: Paginator = Paginator(posts, 3)
+    paginator: Paginator = Paginator(posts, 6)
 
     page_number: int = request.GET.get('page', 1)
     page: Union[Page, EmptyPage] = paginator.get_page(page_number)
