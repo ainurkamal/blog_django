@@ -1,10 +1,8 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views.generic import View
-from django.shortcuts import redirect
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
 from django.core.paginator import Paginator, Page, EmptyPage
 
 from .models import Post, Tag
@@ -31,7 +29,7 @@ def posts_list(request: HttpRequest) -> HttpResponse:
     else:
         posts: List[Post] = Post.objects.all()
 
-    paginator: Paginator = Paginator(posts, 3)
+    paginator: Paginator = Paginator(posts, 6)
 
     page_number: int = request.GET.get('page', 1)
     page: Union[Page, EmptyPage] = paginator.get_page(page_number)

@@ -1,24 +1,17 @@
-<div class="card mb-4">
-    <div class="card-header">
-        {{ post.date_pub }}
-    </div>
-    <div class="card-body">
-        <h5 class="card-title">
-            {{ post.title }}
-        </h5>
-        <p class="card-text">
-            {{ post.body|truncatewords:15 }}
-        </p>
-        <a href="{{ post.get_absolute_url }}" class="btn btn-dark">
-            Read
-        </a>
-    </div>
-    <div class="card-footer text-muted">
-        Tags:
-        {% for tag in post.tags.all %}
-            <a href="{{ tag.get_absolute_url }}">
-                {{ tag.title }}
-            </a>
-        {% endfor %}
-    </div>
+{% load static %}
+<div class="card mx-auto col-9 mb-5 border-0 shadow">
+    <a href="{{ post.get_absolute_url }}">
+        <div class="card-post">
+            {% if post.image %}
+                <img src="{{ post.image.url }}" class="card-img" alt="{{ post.title }}">
+            {% else %}
+                <img src="{% static 'images/default.jpg' %}" class="card-img" alt="Default Image">
+            {% endif %}
+            <div class="card-img-overlay d-flex align-items-end justify-content-center">
+                <div class="card-title px-2 d-inline-flex">
+                    {{ post.title }}
+                </div>
+            </div>
+        </div>
+    </a>
 </div>

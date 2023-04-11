@@ -1,3 +1,64 @@
+/* Add scroll to all pages */
+body {
+    overflow-y: scroll;
+}
+
+
+/* Content container */
+.container {
+    width: 1920px;
+    height: 1080px;
+}
+
+
+/* Navbar settings */
+.nav-posts,
+.nav-tags {
+    /* margin-top: 10px; */
+    font-size: 34px;
+    font-weight: bold;
+}
+
+.nav-logo {
+    margin-top: 9px;
+}
+
+
+/* Navbar links absolute postion on centre */
+ul.navbar-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Color trancitions for posts titles in card*/
+.card-title {
+    font-size: 300%;
+    font-weight: bold;
+    background-color: #fff;
+    color: #313131;
+    transition: all 0.2s ease-in-out;
+}
+
+.card:hover .card-title {
+    background-color: #313131;
+    color: #fff;
+}
+
+.card {
+    position: relative;
+    border-radius: 3em 3em 3em 3em;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    border-radius: 3em 3em 3em 3em;
+}
+
 /* For tag create input placeholder */
 .form-control::placeholder {
     color: #999;
@@ -5,6 +66,8 @@
     font-size: 1em;
 }
 
+
+/* Admin panel */
 .admin-panel {
     border: 1px solid #999;
     border-radius: 2px;
@@ -26,8 +89,4 @@
 
 a.edit, a.delete {
     display: none;
-}
-
-.navbar-nav .nav-link {
-    font-size: 20px;
 }

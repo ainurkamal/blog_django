@@ -1,6 +1,7 @@
 from django.db import models
 from django.shortcuts import reverse
 from django.utils.text import slugify
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from typing import Type, Any
 from time import time
 
@@ -29,6 +30,7 @@ class Post(models.Model):
     body: str = models.TextField(blank=True, db_index=True)
     tags: Type['Tag'] = models.ManyToManyField(
         'Tag', blank=True, related_name='posts')
+    image: InMemoryUploadedFile = models.ImageField(upload_to='images', blank=True, null=True)
     date_pub: models.DateTimeField = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self: 'Post') -> str:
@@ -48,6 +50,15 @@ class Post(models.Model):
         Return the URL to access a form to delete this post.
         """
         return reverse('post_delete_url', kwargs={'slug': self.slug})
+    
+    def get_image_url(self):
+        """
+        Returns the URL of the post's image, or a default image if no image is attached.
+        """
+        if self.image:
+            return self.image.url
+        else:
+            return '/static/images/default.jpg'
 
     def save(self: 'Post', *args: Any, **kwargs: Any) -> None:
         """
@@ -104,3 +115,4 @@ class Tag(models.Model):
     
     class Meta:
         ordering: list = ['title']
+
