@@ -1,16 +1,18 @@
 /* Add scroll to all pages */
 body {
     overflow-y: scroll;
+    background-color: #fafafa;
 }
 
+
+/* Pagination */
 ul.pagination {
     transform: scale(1.3);
 }
 
 /* Content container */
 .container {
-    width: 1920px;
-    height: 1080px;
+    width: 960px;
 }
 
 
@@ -26,15 +28,14 @@ ul.pagination {
     margin-top: 9px;
 }
 
-
-/* Navbar links absolute postion on centre */
 ul.navbar-nav {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
 }
 
-/* Color trancitions for posts titles in card*/
+
+/* Card settins */
 .card-title {
     font-size: 300%;
     font-weight: bold;
@@ -54,15 +55,16 @@ ul.navbar-nav {
     transition: transform 0.2s ease-in-out;
 }
 
-.card:hover {
-    transform: scale(1.05);
-}
-
 .card img {
     border-radius: 3em 3em 3em 3em;
 }
 
-/* For tag create input placeholder */
+.card:hover {
+    transform: scale(1.05);
+}
+
+
+/* Placeholder */
 .form-control::placeholder {
     color: #999;
     opacity: 0.7;
@@ -92,4 +94,113 @@ ul.navbar-nav {
 
 a.edit, a.delete {
     display: none;
+}
+
+
+#post-content {
+    color: #313131;
+    background-color: #fff;
+    margin-top: 20px;
+    padding: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 3em 3em 3em 3em;
+}
+
+
+#footer-content {
+    color: #313131;
+    margin-top: 20px;
+    padding: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+
+/* Fonts */
+.philosopher-font {
+    font-family: 'Philosopher', sans-serif;
+    color: #313131;
+}
+
+.oswald-font {
+    font-family: 'Oswald', sans-serif;
+    color: #313131;
+}
+
+
+/* Vertical lines for squates */
+.vertical-line {
+    height: 24px;
+    color: #b2b2b2;
+}
+
+.vertical-line-2 {
+    border-left: 2px solid #b2b2b2;
+    height: 24px;
+    padding-left: 5px;
+    color: #b2b2b2;
+}
+
+/* Search button */
+.search-btn {
+    border-color: #dfe2e6;
+}
+
+.btn-outline-dark {
+    --bs-btn-color: #212529;
+    --bs-btn-border-color: #dfe2e6;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #212529;
+    --bs-btn-hover-border-color: #212529;
+    --bs-btn-focus-shadow-rgb: 33, 37, 41;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #212529;
+    --bs-btn-active-border-color: #212529;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #212529;
+    --bs-btn-disabled-bg: #fff;
+    --bs-btn-disabled-border-color: #212529;
+    --bs-gradient: none;
+    color: var(--bs-btn-color);
+    background-color: #fff;
+    border-color: var(--bs-btn-border-color);
+}
+
+.btn-outline-dark:hover {
+    color: var(--bs-btn-hover-color);
+    background-color: var(--bs-btn-hover-bg);
+    border-color: var(--bs-btn-hover-border-color);
+}
+
+.btn-outline-dark:focus {
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), 0.25);
+}
+
+.btn-outline-dark:active {
+    color: var(--bs-btn-active-color);
+    background-color: var(--bs-btn-active-bg);
+    border-color: var(--bs-btn-active-border-color);
+    box-shadow: var(--bs-btn-active-shadow);
+}
+
+.btn-outline-dark:disabled {
+    color: var(--bs-btn-disabled-color);
+    background-color: var(--bs-btn-disabled-bg);
+    border-color: var(--bs-btn-disabled-border-color);
+}
+
+.btn-outline-dark:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), 0.25);
+}
+
+.btn-outline-dark:not(:disabled):not(.disabled).active,
+.btn-outline-dark:not(:disabled):not(.disabled):active.show {
+    color: var(--bs-btn-active-color);
+    background-color: var(--bs-btn-active-bg);
+    border-color: var(--bs-btn-active-border-color);
+}
+
+.btn-outline-dark:not(:disabled):not(.disabled):focus {
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), 0.25);
 }
