@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="mt-5">
-        Посты с тегом {{ tag.title|title }} :
+<div style="text-align: center; color:#444444;">
+    <h1 class="mx-auto mb-5" style="font-size: 34px; font-weight: bold; color: #575757">
+        Посты с тегом <kbd><samp>{{ tag.title|title }}</samp></kbd> :
     </h1>
     {% for post in tag.posts.all %}
         {% include 'blog/includes/post_card_template.html' %}
-    {% endfor %}    
+    {% endfor %}   
+</div>
 {% endblock %}
