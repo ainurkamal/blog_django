@@ -5,24 +5,26 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{% url 'tag_create_url' %}" method="post">
+    <form class="col-6 mx-auto" action="{% url 'tag_create_url' %}" method="post">
         {% csrf_token %}
-
-        {% for field in form %}
-            <div class="form-group">
-                {% if field.errors %}
-                    <div class="alert alert-danger">
-                        {{ field.errors }}
-                    </div>
-                {% endif %}
-
-                {{ field.label }}
-                {{ field }}
-            </div>
-        {% endfor %}
-
-        <button type="submit" class="btn btn-primary">
+        <h3 style="margin-bottom: 30px; text-align: center;">
             Создать тег
+        </h3>
+        <div id="post-content" class="mx-auto col-9 block-text">
+            <div class="post-create-form col-6">
+                <label for="{{ form.title.id_for_label }}">Заголовок</label>
+                {{ form.title }}
+            </div>
+            <div class="post-create-form col-6">
+                <label for="{{ form.content.id_for_label }}">URL-адрес тега</label>
+                {{ form.slug }}
+            </div>
+        <button type="button" name="button" class="btn btn-secondary" onclick="history.go(-1)">
+            Отмена
         </button>
+        <button type="submit" name="button" class="btn btn-success"">
+                Сохранить
+        </button>
+        </div>
     </form>
 {% endblock %}

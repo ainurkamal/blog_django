@@ -115,8 +115,8 @@
     <!-- Admin panel -->
     {% if request.user.is_authenticated and request.user.is_staff %}
         <div class="admin-panel  aligns-items-center">
-            <a href="/admin" class="btn btn-info">
-                Административная панель
+            <a href="/admin" class="btn btn-outline-dark">
+                Администратор
             </a>
             {% block admin-panel %}
             {% endblock %}
