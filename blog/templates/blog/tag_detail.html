@@ -1,14 +1,17 @@
 {% extends 'blog/base_blog.html' %}
 
 {% block title %}
-    Тег {{ tag.title|title }}
+    Тег `{{ tag.title }}`
 {% endblock %}
 
 {% block content %}
-    <h1 class="mt-5">
-        Посты с тегом {{ tag.title|title }} :
-    </h1>
+<div style="text-align: center; color:#444444;">
+    <p class="mx-auto mb-5" style="font-size: 34px; color: #575757">
+        <span style="font-weight: bold;">Посты с тегом </span>
+    <span><samp>{{ tag.title }}</samp></span></p>
+    
     {% for post in tag.posts.all %}
         {% include 'blog/includes/post_card_template.html' %}
-    {% endfor %}    
+    {% endfor %}
+</div>
 {% endblock %}

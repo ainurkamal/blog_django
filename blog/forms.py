@@ -15,11 +15,11 @@ class PostForm(forms.ModelForm):
         fields: List[str] = ['title', 'slug', 'body', 'tags', 'image']
 
         widgets: dict = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите заголовок поста'}),
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите заголовок'}),
             'slug': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите уникальный адрес поста'}),
-            'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Введите текст поста'}),
+            'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Введите текст'}),
             'tags': forms.SelectMultiple(attrs={'class': 'form-control'}),
-            'image': forms.ClearableFileInput(attrs={'multiple': True}),
+            'image': forms.ClearableFileInput(attrs={'class': 'form-control', 'multiple': True, 'accept': 'image/*',}),
         }
 
         def clean_slug(self: 'PostForm') -> str:
