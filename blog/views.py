@@ -2,7 +2,12 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views.generic import View
 from django.db.models import Q
+
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
+
 from django.core.paginator import Paginator, Page, EmptyPage
 
 from .models import Post, Tag
@@ -10,6 +15,18 @@ from .utils import *
 from .forms import TagForm, PostForm
 
 from typing import List, Type, Any, Union
+
+
+
+class RegisterUser(CreateView):
+    form_class = UserCreationForm
+    template_name = 'blog/registration.html'
+    success_url = reverse_lazy('login_url')
+
+    def get_user_context(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context
 
 
 def posts_list(request: HttpRequest) -> HttpResponse:
