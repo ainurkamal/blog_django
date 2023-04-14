@@ -156,6 +156,11 @@ a.edit, a.delete {
     color: #575757;
 }
 
+.garamond-font {
+font-family: 'EB Garamond', serif;
+color: #575757;
+}
+
 
 /* Vertical lines for squates */
 .vertical-line {
