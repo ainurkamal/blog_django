@@ -12,24 +12,28 @@ from django.core.paginator import Paginator, Page, EmptyPage
 from .models import Post, Tag
 from .utils import *
 from .forms import TagForm, PostForm, RegistrationForm
-
-from typing import List, Type, Dict, Any, Union
+from django.contrib import messages
+from typing import List, Type, Any, Union
 
 
 
 class RegisterUser(CreateView):
     """
-    Register a new user.
+    Registers a new user.
     """
     form_class: RegistrationForm = RegistrationForm
     template_name: str = 'blog/registration.html'
-    success_url: str = reverse_lazy('login_url')
+    success_url: str = reverse_lazy('posts_list_url')
 
-    def get_user_context(self, **kwargs) -> Dict[str, Any]:
-        context: Dict[str, Any] = super().get_context_data(**kwargs)
-        context['user']: Any = self.request.user
-        return context
-
+    def form_invalid(self, form):
+        """
+        Displays an error message if the passwords don't match.
+        """
+        response: Any = super().form_invalid(form)
+        if form.errors.get('password2') == ['Пароли не совпадают']:
+            messages.error(self.request, 'Пароли не совпадают')
+        return response
+    
 
 def posts_list(request: HttpRequest) -> HttpResponse:
     """

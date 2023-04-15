@@ -11,22 +11,19 @@
             <h3 style="margin-bottom: 30px; text-align: center;">
                 Регистрация нового пользователя
             </h3>
-            <div id="username-field" class="col-6" style="margin-bottom: 10px;">
-                <label for="{{ form.username.id_for_label }}">Имя пользователя:</label>
-                {{ form.username }}
+            {% for field in form %}
+            <div class="form-group {% if field.errors %}has-error{% endif %}">
+                <label class="form-label" for="{{ field.id_for_label }}">
+                    {{field.label}}:
+                </label>
+                {{ field }}
+                {% if field.errors %}
+                <div style="font-size: 14px; max-height: 50px; text-align: left;">
+                    {{ field.errors }}
+                </div>
+                {% endif %}
             </div>
-            <div id="email-field" class="col-8" style="margin-bottom: 10px;">
-                <label for="{{ form.email.id_for_label }}">Email:</label>
-                {{ form.email }}
-            </div>
-            <div id="password1-field" class="col-6" style="margin-bottom: 10px;">
-                <label for="{{ form.password1.id_for_label }}">Пароль:</label>
-                {{ form.password1 }}
-            </div>
-            <div id="password2-field" class="col-6" style="margin-bottom: 10px;">
-                <label for="{{ form.password2.id_for_label }}">Повторите пароль:</label>
-                {{ form.password2 }}
-            </div>
+            {% endfor %}
             <br>
             <button type="button" name="button" class="btn btn-secondary" onclick="history.go(-1)">
                 Отмена
