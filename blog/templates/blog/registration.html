@@ -1,0 +1,38 @@
+{% extends 'blog/base_blog.html' %}
+
+{% block title %}
+    Регистрация
+{% endblock %}
+
+{% block content %}
+    <form class="col-6 mx-auto" method="post">
+        {% csrf_token %}
+        <div id="post-content" class="post-create-form mx-auto">
+            <h3 style="margin-bottom: 30px; text-align: center;">
+                Регистрация нового пользователя
+            </h3>
+            <div id="username-field" class="col-6" style="margin-bottom: 10px;">
+                <label for="{{ form.username.id_for_label }}">Имя пользователя:</label>
+                {{ form.username }}
+            </div>
+            <div id="email-field" class="col-8" style="margin-bottom: 10px;">
+                <label for="{{ form.email.id_for_label }}">Email:</label>
+                {{ form.email }}
+            </div>
+            <div id="password1-field" class="col-6" style="margin-bottom: 10px;">
+                <label for="{{ form.password1.id_for_label }}">Пароль:</label>
+                {{ form.password1 }}
+            </div>
+            <div id="password2-field" class="col-6" style="margin-bottom: 10px;">
+                <label for="{{ form.password2.id_for_label }}">Повторите пароль:</label>
+                {{ form.password2 }}
+            </div>
+            <br>
+            <button type="button" name="button" class="btn btn-secondary" onclick="history.go(-1)">
+                Отмена
+            </button>
+            <button type="submit" name="button" class="btn btn-success">
+                Зарегистрироваться
+            </button>
+        </div>
+{% endblock %}

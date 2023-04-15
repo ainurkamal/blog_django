@@ -1,7 +1,24 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from .models import Tag, Post
 from django.core.exceptions import ValidationError
-from typing import List
+from typing import List, Tuple
+
+
+class RegistrationForm(UserCreationForm):
+    """
+    A form for creating a new user.
+    """
+    username: forms.CharField = forms.CharField(label='Имя пользователя', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email: forms.EmailField = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    password1: forms.CharField = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password2: forms.CharField = forms.CharField(label='Повторите пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'})) 
+
+    class Meta:
+        model: User = User
+        fields: Tuple[str, ...] = ('username', 'email', 'password1', 'password2')
+
 
 
 class PostForm(forms.ModelForm):
