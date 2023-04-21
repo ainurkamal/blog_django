@@ -16,5 +16,6 @@ urlpatterns = [
     path('authentification/', authentification, name='authentification_url'),
     path('register/', RegisterUser.as_view(), name='registration_url'),
     path('login/', LoginUser.as_view(), name='login_url'),
+    path('logout_confirm/', logout_confirm, name='logout_confirm_url'),
     path('logout/', logout_user, name='logout_url'),
 ]

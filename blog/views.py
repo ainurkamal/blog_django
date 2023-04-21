@@ -65,9 +65,16 @@ class LoginUser(LoginView):
         return reverse_lazy('posts_list_url')
     
 
+def logout_confirm(request: HttpRequest) -> HttpResponse:
+    """
+    Asks the user to confirm the logout.
+    """
+    return render(request, 'blog/logout.html')
+    
+
 def logout_user(request: HttpRequest) -> HttpResponse:
     """
-    Logs out a user.
+    Logs out the user.
     """
     logout(request)
     return redirect('login_url')
