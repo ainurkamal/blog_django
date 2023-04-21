@@ -1,7 +1,7 @@
 {% extends 'blog/base_blog.html' %}
 
 {% block title %}
-    Регистрация
+    Создать профиль
 {% endblock %}
 
 {% block content %}
@@ -9,20 +9,20 @@
         {% csrf_token %}
         <div id="post-content" class="post-create-form mx-auto">
             <h3 style="margin-bottom: 30px; text-align: center;">
-                Регистрация нового пользователя
+                Создать профиль
             </h3>
             {% for field in form %}
-            <div class="form-group {% if field.errors %}has-error{% endif %}">
-                <label class="form-label" for="{{ field.id_for_label }}">
-                    {{field.label}}:
-                </label>
-                {{ field }}
-                {% if field.errors %}
-                <div style="font-size: 14px; max-height: 50px; text-align: left;">
-                    {{ field.errors }}
+                <div style="margin-bottom: 10px;" class="form-group {% if field.errors %}has-error{% endif %}">
+                    <label class="form-label" for="{{ field.id_for_label }}">
+                        {{ field.label }}:
+                    </label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <div style="font-size: 14px; max-height: 50px; text-align: left;">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
                 </div>
-                {% endif %}
-            </div>
             {% endfor %}
             <br>
             <button type="button" name="button" class="btn btn-secondary" onclick="history.go(-1)">
@@ -32,4 +32,5 @@
                 Зарегистрироваться
             </button>
         </div>
+    </form>
 {% endblock %}

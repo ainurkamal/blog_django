@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from .models import Tag, Post
 from django.core.exceptions import ValidationError
@@ -7,7 +8,10 @@ from typing import List
 
 
 class RegistrationForm(UserCreationForm):
-    username = forms.CharField(label='Имя пользователя', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    """
+    A form for registering a new user.
+    """
+    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-control'}))
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     password2 = forms.CharField(label='Повторите пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'})) 
@@ -16,6 +20,18 @@ class RegistrationForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
+
+class LoginForm(AuthenticationForm):
+    """
+    A form for logging in a user.
+    """
+    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+    error_messages = {
+        'invalid_login': "Неверный логин или пароль",
+        'inactive': "Ваш аккаунт неактивен.",
+    }
 
 
 class PostForm(forms.ModelForm):

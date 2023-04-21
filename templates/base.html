@@ -69,10 +69,19 @@
         </form>
 
         <!-- Registration -->
-        <div class="nav-login justify-content-lg-end">
+        <div class="nav-register justify-content-lg-end">
             <a href="{% url 'registration_url' %}">
-                <span class="material-symbols-rounded mt-2" style="margin-right: 40px; font-size: 3em; color: #575757">
+                <span class="material-symbols-rounded mt-2" style="font-size: 3em; color: #575757">
                     person
+                </span>
+            </a>
+        </div>
+
+        <!-- Login -->
+        <div class="nav-login justify-content-lg-end">
+            <a href="{% url 'login_url' %}">
+                <span class="material-symbols-rounded mt-2" style="margin-right: 40px; font-size: 3em; color: #575757">
+                    login
                 </span>
             </a>
         </div>

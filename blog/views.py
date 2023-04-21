@@ -4,6 +4,7 @@ from django.views.generic import View
 from django.db.models import Q
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 
@@ -11,10 +12,9 @@ from django.core.paginator import Paginator, Page, EmptyPage
 
 from .models import Post, Tag
 from .utils import *
-from .forms import TagForm, PostForm, RegistrationForm
+from .forms import TagForm, PostForm, RegistrationForm, LoginForm
 from django.contrib import messages
 from typing import List, Type, Any, Union
-
 
 
 class RegisterUser(CreateView):
@@ -23,7 +23,7 @@ class RegisterUser(CreateView):
     """
     form_class: RegistrationForm = RegistrationForm
     template_name: str = 'blog/registration.html'
-    success_url: str = reverse_lazy('posts_list_url')
+    success_url: str = reverse_lazy('login_url')
 
     def form_invalid(self, form):
         """
@@ -33,6 +33,28 @@ class RegisterUser(CreateView):
         if form.errors.get('password2') == ['Пароли не совпадают']:
             messages.error(self.request, 'Пароли не совпадают')
         return response
+    
+
+class LoginUser(LoginView):
+    """
+    Logs in a user.
+    """
+    form_class: LoginForm = LoginForm
+    template_name: str = 'blog/login.html'
+
+    def form_invalid(self, form):
+        """
+        Displays an error message if the login credentials are invalid.
+        """
+        response: Any = super().form_invalid(form)
+        messages.error(self.request, 'Неверный логин или пароль')
+        return response
+    
+    def get_success_url(self) -> str:
+        """
+        Returns the URL to redirect to after successful login.
+        """
+        return reverse_lazy('posts_list_url')
     
 
 def posts_list(request: HttpRequest) -> HttpResponse:
