@@ -5,6 +5,7 @@ from django.db.models import Q
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 
@@ -15,6 +16,13 @@ from .utils import *
 from .forms import TagForm, PostForm, RegistrationForm, LoginForm
 from django.contrib import messages
 from typing import List, Type, Any, Union
+
+
+def authentification(request: HttpRequest) -> HttpResponse:
+    """
+    Renders the authentification page.
+    """
+    return render(request, 'blog/authentification.html')
 
 
 class RegisterUser(CreateView):
@@ -55,6 +63,14 @@ class LoginUser(LoginView):
         Returns the URL to redirect to after successful login.
         """
         return reverse_lazy('posts_list_url')
+    
+
+def logout_user(request: HttpRequest) -> HttpResponse:
+    """
+    Logs out a user.
+    """
+    logout(request)
+    return redirect('login_url')
     
 
 def posts_list(request: HttpRequest) -> HttpResponse:
