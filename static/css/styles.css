@@ -166,9 +166,10 @@ a.edit, a.delete {
     color: #575757;
 }
 
-.garamond-font {
-font-family: 'EB Garamond', serif;
-color: #575757;
+.merriweather-font {
+    font-family: 'Merriweather', serif;
+    color: #575757;
+    font-size: 21px;
 }
 
 

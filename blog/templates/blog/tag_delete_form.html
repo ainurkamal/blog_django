@@ -10,8 +10,10 @@
     {% csrf_token %}
     <div id="post-content" class="mx-auto col-9 block-text">
         <h3>
-            Вы действительно хотите удалить тег
-            <p><span><samp>{{ tag.title }}</samp></span> ?
+            <p class="mx-auto" style="font-size: 34px; color: #575757">
+                <span style="font-weight: bold;">Вы действительно хотите удалить тег </span>`
+                <span style="color: #7c7c7c">{{ tag.title }}</span>` ?
+            </p>
         </h3>
         <button type="button" name="button" class="btn btn-secondary" onclick="history.go(-1)">
             Отмена
