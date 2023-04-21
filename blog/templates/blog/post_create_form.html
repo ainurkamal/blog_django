@@ -7,10 +7,10 @@
 {% block content %}
 <form class="col-12 mx-auto" action="{% url 'post_create_url' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <h3 style="margin-bottom: 30px; text-align: center;">
-        Создать новый пост
-    </h3>
     <div id="post-content" class="mx-auto col-9 block-text">
+        <h3 style="margin-bottom: 30px; text-align: center;">
+            Создать новый пост
+        </h3>
         <div class="post-create-form col-4">
             <label for="{{ form.title.id_for_label }}">Заголовок</label>
             {{ form.title }}
@@ -31,10 +31,11 @@
             <label for="{{ form.publish.id_for_label }}"><span style="font-size: 24px;">Изображение</span></label>
             <p>{{ form.image }}</p>
         </div>
-        <button type="button" name="button" class="btn btn-secondary" style="margin-top: 30px;" onclick="history.go(-1)">
+        <br>
+        <button type="button" name="button" class="btn btn-secondary" style="margin-top: 10px;" onclick="history.go(-1)">
             Отмена
         </button>
-        <button type="submit" class="btn btn-success" style="margin-top: 30px;">
+        <button type="submit" class="btn btn-success" style="margin-top: 10px;">
             Сохранить
         </button>
     </div>

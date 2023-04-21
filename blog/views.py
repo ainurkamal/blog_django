@@ -2,15 +2,83 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views.generic import View
 from django.db.models import Q
+
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import logout
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
+
 from django.core.paginator import Paginator, Page, EmptyPage
 
 from .models import Post, Tag
 from .utils import *
-from .forms import TagForm, PostForm
-
+from .forms import TagForm, PostForm, RegistrationForm, LoginForm
+from django.contrib import messages
 from typing import List, Type, Any, Union
 
+
+def authentification(request: HttpRequest) -> HttpResponse:
+    """
+    Renders the authentification page.
+    """
+    return render(request, 'blog/authentification.html')
+
+
+class RegisterUser(CreateView):
+    """
+    Registers a new user.
+    """
+    form_class: RegistrationForm = RegistrationForm
+    template_name: str = 'blog/registration.html'
+    success_url: str = reverse_lazy('login_url')
+
+    def form_invalid(self, form):
+        """
+        Displays an error message if the passwords don't match.
+        """
+        response: Any = super().form_invalid(form)
+        if form.errors.get('password2') == ['Пароли не совпадают']:
+            messages.error(self.request, 'Пароли не совпадают')
+        return response
+    
+
+class LoginUser(LoginView):
+    """
+    Logs in a user.
+    """
+    form_class: LoginForm = LoginForm
+    template_name: str = 'blog/login.html'
+
+    def form_invalid(self, form):
+        """
+        Displays an error message if the login credentials are invalid.
+        """
+        response: Any = super().form_invalid(form)
+        messages.error(self.request, 'Неверный логин или пароль')
+        return response
+    
+    def get_success_url(self) -> str:
+        """
+        Returns the URL to redirect to after successful login.
+        """
+        return reverse_lazy('posts_list_url')
+    
+
+def logout_confirm(request: HttpRequest) -> HttpResponse:
+    """
+    Asks the user to confirm the logout.
+    """
+    return render(request, 'blog/logout.html')
+    
+
+def logout_user(request: HttpRequest) -> HttpResponse:
+    """
+    Logs out the user.
+    """
+    logout(request)
+    return redirect('login_url')
+    
 
 def posts_list(request: HttpRequest) -> HttpResponse:
     """

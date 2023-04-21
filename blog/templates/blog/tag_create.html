@@ -5,26 +5,25 @@
 {% endblock %}
 
 {% block content %}
-    <form class="col-6 mx-auto" action="{% url 'tag_create_url' %}" method="post">
+    <form class="col-4 mx-auto" action="{% url 'tag_create_url' %}" method="post">
         {% csrf_token %}
-        <h3 style="margin-bottom: 30px; text-align: center;">
-            Создать тег
-        </h3>
-        <div id="post-content" class="mx-auto col-9 block-text">
-            <div class="post-create-form col-6">
-                <label for="{{ form.title.id_for_label }}">Заголовок</label>
-                {{ form.title }}
+        <div id="post-content" class="post-create-form mx-auto">
+            <h3 style="margin-bottom: 30px; text-align: center;">
+                Создать тег
+            </h3>
+            <div style="margin-bottom: 10px;"><label for="{{ form.title.id_for_label }}">Заголовок</label>
+            {{ form.title }}
             </div>
-            <div class="post-create-form col-6">
-                <label for="{{ form.content.id_for_label }}">URL-адрес тега</label>
-                {{ form.slug }}
+            <div style="margin-bottom: 10px;"><label for="{{ form.content.id_for_label }}">URL-адрес тега</label>
+            {{ form.slug }}
             </div>
-        <button type="button" name="button" class="btn btn-secondary" onclick="history.go(-1)">
-            Отмена
-        </button>
-        <button type="submit" name="button" class="btn btn-success"">
+            <br>
+            <button type="button" name="button" class="btn btn-secondary" onclick="history.go(-1)">
+                Отмена
+            </button>
+            <button type="submit" name="button" class="btn btn-success">
                 Сохранить
-        </button>
+            </button>
         </div>
     </form>
 {% endblock %}

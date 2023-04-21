@@ -13,4 +13,9 @@ urlpatterns = [
     path('tag/<str:slug>/', TagDetail.as_view(), name='tag_detail_url'),
     path('tag/<str:slug>/update', TagUpdate.as_view(), name='tag_update_url'),
     path('tag/<str:slug>/delete', TagDelete.as_view(), name='tag_delete_url'),
+    path('authentification/', authentification, name='authentification_url'),
+    path('register/', RegisterUser.as_view(), name='registration_url'),
+    path('login/', LoginUser.as_view(), name='login_url'),
+    path('logout_confirm/', logout_confirm, name='logout_confirm_url'),
+    path('logout/', logout_user, name='logout_url'),
 ]
