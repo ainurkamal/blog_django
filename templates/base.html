@@ -70,12 +70,20 @@
 
         <!-- Authentification -->
         <div class="nav-register justify-content-lg-end">
-            <a href="{% url 'authentification_url' %}">
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'logout_url' %}" style="position: relative;">
+                <span class="material-symbols-rounded" style="font-size: 3em; margin-right: 40px; color: #575757">
+                    logout
+                </span>
+            </a>
+        {% else %}
+            <a href="{% url 'authentification_url' %}" style="position: relative;">
                 <span class="material-symbols-rounded mt-2" style="font-size: 3em; margin-right: 40px; color: #575757">
                     person
                 </span>
             </a>
         </div>
+        {% endif %}
     </nav>
 
     <div class="container mt-5">
