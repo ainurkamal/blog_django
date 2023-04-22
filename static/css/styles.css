@@ -54,13 +54,6 @@ ul.pagination {
 
 
 /* Navbar settings */
-.nav-posts,
-.nav-tags {
-    /* margin-top: 10px; */
-    font-size: 34px;
-    font-weight: bold;
-}
-
 .nav-logo {
     margin-top: 9px;
 }
@@ -69,6 +62,37 @@ ul.navbar-nav {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.nav-link {
+    display: block;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    font-size: 34px;
+    font-weight: bold;
+    color: #575757;
+    text-decoration: none;
+    background: 0 0;
+    border: 0;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+}
+
+.nav-link:hover {
+    color: #898989;
+    /* Задайте желаемый цвет текста при наведении */
+    /* Добавьте другие свойства по вашему усмотрению */
+}
+
+.tag-link {
+    font-size: 34px;
+    color: #575757;
+    text-decoration: none;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+}
+
+.tag-link:hover {
+    color: #898989;
+    /* Задайте желаемый цвет текста при наведении */
+    /* Добавьте другие свойства по вашему усмотрению */
 }
 
 
