@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block content %}
-    <div class="mx-auto text-center col-3 block-text" id="post-content">
+    <div class="mx-auto text-center col-4 block-text" id="post-content">
     {% for tag in tags %}
     <h3>
-        <a href="{{ tag.get_absolute_url }}" class="tag_link link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+        <a href="{{ tag.get_absolute_url }}" class="tag-link">
             {{ tag.title }}
         </a>
     </h3>
