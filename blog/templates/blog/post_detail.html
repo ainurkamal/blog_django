@@ -34,6 +34,7 @@
                     <span class="inline-comments-author" style="background-color: #575757; color: #fff;">
                         {{ comment.author.username }}
                     </span>
+                    <span style="padding-left: 10px; color: #b2b2b2">{{ comment.time_since_created }} назад</span>
                 </p>
                 <p style="font-size: 20px;">
                     {{ comment.text|linebreaksbr }}

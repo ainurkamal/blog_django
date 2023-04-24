@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import reverse
 from django.utils.text import slugify
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.utils import timezone
+from django.utils.timesince import timesince
 from typing import Type, Any
 from time import time
 
@@ -104,6 +106,14 @@ class Comment(models.Model):
         User, on_delete=models.CASCADE)
     text: models.TextField = models.TextField()
     created_at: models.DateTimeField = models.DateTimeField(auto_now_add=True)
+
+    def time_since_created(self):
+        """
+        Метод для вычисления количества прошедшего времени с момента публикации комментария.
+        """
+        now = timezone.now()
+        time_elapsed = timesince(self.created_at, now)
+        return time_elapsed.split(",")[0]
 
     def __str__(self):
         """
