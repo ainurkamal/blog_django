@@ -68,9 +68,14 @@ class CommentForm(forms.ModelForm):
     """
     A form for creating or updating a Comment object.
     """
+    
     class Meta:
         model: Comment = Comment
         fields: list = ['text']
+
+        widgets: dict = {
+            'text': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Введите текст', 'style': 'font-family: Ubuntu, sans-serif; font-size: 20px;', 'rows': 3, 'wrap': 'soft'}),
+        }
 
 
 class TagForm(forms.ModelForm):

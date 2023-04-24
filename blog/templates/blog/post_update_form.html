@@ -7,7 +7,7 @@
 {% block content %}
 <form class="col-12 mx-auto" action="{{ post.get_update_url }}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <div id="post-content" class="mx-auto col-9 block-text">
+    <div id="post-content" class="mx-auto col-9 block-text" style="font-family: 'Ubuntu', sans-serif">
         <h3 style="margin-bottom: 30px; text-align: center;">
             Редактировать пост
         </h3>

@@ -110,6 +110,10 @@ class Comment(models.Model):
         Returns a string representation of the comment.
         """
         return f"{self.author.username} - {self.created_at}"
+    
+    class Meta:
+        verbose_name: str = 'Комментарии'
+        verbose_name_plural: str = 'Комментарии'
 
 
 class Tag(models.Model):
