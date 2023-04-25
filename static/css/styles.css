@@ -26,11 +26,11 @@ ul.pagination {
     color: #575757;
     background-color: #fff;
     margin-top: 20px;
-    padding: 40px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding: 40px 70px;
     border-radius: 3em 3em 3em 3em;
+    line-height: 1.8;
 }
+
 
 #footer-content {
     color: #575757;
