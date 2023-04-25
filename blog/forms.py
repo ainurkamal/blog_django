@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
-from .models import Tag, Post
+from .models import Tag, Post, Comment
 from django.core.exceptions import ValidationError
 from typing import List
 
@@ -62,6 +62,20 @@ class PostForm(forms.ModelForm):
             if new_slug == 'create':
                 raise ValidationError(f'Адрес тега должен быть уникальным. "{new_slug}" уже используется.')
             return new_slug
+        
+
+class CommentForm(forms.ModelForm):
+    """
+    A form for creating or updating a Comment object.
+    """
+    
+    class Meta:
+        model: Comment = Comment
+        fields: list = ['text']
+
+        widgets: dict = {
+            'text': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Введите текст', 'style': 'font-family: Ubuntu, sans-serif; font-size: 20px;', 'rows': 3, 'wrap': 'soft'}),
+        }
 
 
 class TagForm(forms.ModelForm):

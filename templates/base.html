@@ -23,9 +23,9 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@800&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,300;1,700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;1,300;1,400&display=swap"
         rel="stylesheet">
     <!-- Icons -->
     <link rel="stylesheet"
@@ -35,7 +35,7 @@
 </head>
     
 <body>
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" style="font-family: 'Ubuntu', sans-serif;">
         <!-- Navbar main links -->
         <div class="container-fluid">
             <ul class="nav-logo">
@@ -60,7 +60,7 @@
         <!-- Search form -->
         <form class="d-flex justify-content-lg-end" role="search" action="{% url 'posts_list_url' %}">
             <div class="input-group" style="margin-right: 10px;">
-                <input class="form-control" type="search" placeholder="Искать" aria-label="Search" name="search">
+                <input class="form-control" type="search" placeholder="Искать" aria-label="Search" name="search" style="font-family: 'Ubuntu', sans-serif;">
                 <button class="btn btn-outline-dark search-btn" type="submit">
                     <span class="material-symbols-outlined mt-2">
                         search
@@ -158,7 +158,7 @@
 <footer class="footer">
     <div id="footer-content" class="mx-auto col-7 block-text mt-5"> 
         <span style="font-size: 16px;">
-            <p style="text-align: center;">
+            <p style="text-align: center; font-family: 'Ubuntu', sans-serif;">
             Разрешается использовать любые цитаты, фотографии из моих статей, а также иные материалы 
             с указанием ссылки на оригинал. Использование в коммерческих целях исключено.
             </p>
